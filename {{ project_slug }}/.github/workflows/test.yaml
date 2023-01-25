@@ -63,7 +63,7 @@ jobs:
         run: |
           pip install .[dev]
           angreal dev-setup
-          angreal static
+          angreal static-analysis
 
   install-dev:
     name: Verify dev env
