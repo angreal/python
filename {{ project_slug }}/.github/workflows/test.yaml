@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref_name }}-${{ github.event.pull_request.number || github.sha }}
+  group: {% raw %}${{ github.workflow }}-${{ github.ref_name }}-${{ github.event.pull_request.number || github.sha }}{% endraw %}
   cancel-in-progress: true
 env:
   FORCE_COLOR: "1" # Make tools pretty.
