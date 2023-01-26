@@ -1,11 +1,11 @@
 import os
 import subprocess
-import webbrowser
+
 import angreal
 
 
-@angreal.command(name="build", about="build your project for distribution")
-def run_tests(integration=False, full=False, open=True):
+@angreal.command(name="dist", about="build your project for distribution")
+def run_tests():
     one_up = os.path.join(angreal.get_root(), "..")
 
     subprocess.run(

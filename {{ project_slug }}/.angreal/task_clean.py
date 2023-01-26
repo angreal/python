@@ -1,11 +1,11 @@
 import os
 import subprocess
-import webbrowser
+
 import angreal
 
 
 @angreal.command(name="clean", about="cleans out generated cruft")
-def run_tests(integration=False, full=False, open=True):
+def run_tests():
     one_up = os.path.join(angreal.get_root(), "..")
 
     subprocess.run(

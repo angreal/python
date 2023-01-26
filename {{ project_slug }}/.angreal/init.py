@@ -5,9 +5,9 @@ def init():
         (
             "git init .;"
             "git add .;"
-            "mkdir -p .venv/angreal_python_dev;"
-            "python3 -m venv .venv/angreal_python_dev;"
-            ". .venv/angreal_python_dev/bin/activate;"
+            "mkdir -p .venv/{{ project_slug }};"
+            "python3 -m venv .venv/{{ project_slug }};"
+            ". .venv/{{ project_slug }}/bin/activate;"
             "cd docs/themes && git submodule add https://github.com/matcornic/hugo-theme-learn && cd ../..;"
             "python3 -m pip install -e .[dev];"
             "pre-commit install;"

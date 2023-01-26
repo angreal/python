@@ -13,6 +13,7 @@ def setup_env():
         (
             "mkdir -p .venv/angreal_python_dev;"
             "python3 -m venv .venv/angreal_python_dev;"
+            ". .venv/angreal_python_dev/bin/activate;"
             "pip install -e .[dev];"
             "pre-commit install;"
             "pre-commit run --all-files;"
