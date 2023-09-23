@@ -1,8 +1,9 @@
 import angreal
-from angreal.integrations.venv import venv_required,VirtualEnv
+from angreal.integrations.venv import venv_required
 
 import os
 import subprocess
+from angreal.integrations.venv import venv_required
 
 venv_path = os.path.join(angreal.get_root(),'..','.venv')
 
