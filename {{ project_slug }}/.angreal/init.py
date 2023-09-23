@@ -3,7 +3,8 @@ import subprocess
 def init():
     subprocess.run(
         (
-            "git init . --initial-branch=main;"
+            "git config --global init.defaultBranch main;"
+            "git init .;"
             "git add .;"
             "mkdir -p .venv/{{ project_slug }};"
             "python3 -m venv .venv/{{ project_slug }};"
@@ -18,5 +19,4 @@ def init():
     )
 
     print("Initialization complete.")
-    print("You'll need to run 'git remote add origin git@github.com:{{ github_username }}/{{ project_slug }}.git'")
     pass

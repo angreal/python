@@ -29,6 +29,6 @@ repos:
         name: Run codespell to check for common misspellings in files
         language: python
         types: [text]
-        exclude: ^docs/themes/.*$
+        exclude: ''
         args:
           - --ignore-words=.spelling_wordlist.txt
