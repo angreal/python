@@ -52,4 +52,4 @@ def setup_env(open):
     )
 
     if open:
-        webbrowser.open(f'file:://{os.path.join(one_up,"typing_report","index.html")}')
+        webbrowser.open(f'file:://{os.path.join(cwd,"typing_report","index.html")}')
