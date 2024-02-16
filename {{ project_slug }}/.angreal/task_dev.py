@@ -12,10 +12,10 @@ def setup():
     one_up = os.path.join(angreal.get_root(), '..')
     return subprocess.run(
         (
-            "mkdir -p .venv/angreal_python_dev;"
-            "python3 -m venv .venv/{{ project_slug }};"
-            ". .venv/{{ project_slug }}/bin/activate;"
-            "python3 -m pip install -e .[dev];"
+            "pip install uv;"
+            "uv venv;"
+            ". .venv/bin/activate"
+            "uv pip install -e .[dev];"
             "pre-commit install;"
             "pre-commit run --all-files;"
         ),
@@ -50,7 +50,7 @@ def run_tests():
     subprocess.run(
         (
         "python3 -m build --sdist --wheel --outdir dist/;"
-        "python3 -m pip install {{ package_name }} --no-index --find-links dist --force-reinstall"
+        "uv pip install {{ package_name }}@. --no-index --find-links dist --force-reinstall"
         ), 
         shell=True, 
         cwd=one_up
