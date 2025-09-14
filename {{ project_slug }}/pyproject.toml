@@ -1,0 +1,127 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ project_slug }}"
+dynamic = ["version"]
+description = "{{ project_short_description }}"
+readme = "README.md"
+authors = [
+    {name = "{{ author_name }}", email = "{{ author_email }}"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers", 
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.9"
+dependencies = [
+    # Add runtime dependencies here
+]
+
+# [project.urls]
+# Uncomment and update these URLs when you have a repository/documentation
+# Homepage = "https://github.com/yourusername/{{ project_slug }}"
+# "Source Code" = "https://github.com/yourusername/{{ project_slug }}"
+# Documentation = "https://{{ project_slug }}.readthedocs.io/"
+
+[project.scripts]
+{{ project_slug }} = "{{ package_name }}.__main__:main"
+
+[project.optional-dependencies]
+dev = [
+    "mypy[reports]",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "uv",
+    "pre-commit",
+    "build",
+    "angreal",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "{{ package_name }}.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["{{ package_name }}*"]
+
+[tool.setuptools.package-data]
+"{{ package_name }}" = ["py.typed"]
+
+[tool.ruff]
+src = ["src"]
+line-length = 110
+target-version = "py39"
+exclude = [
+    ".angreal",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by formatter
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.mypy]
+python_version = "3.9"
+warn_unused_ignores = true
+namespace_packages = true
+explicit_package_bases = true
+pretty = true
+show_error_codes = true
+ignore_missing_imports = true
+no_implicit_optional = true
+warn_redundant_casts = true
+show_error_context = true
+color_output = true
+exclude = [
+    "^.angreal/.*$",
+]
+
+[[tool.mypy.overrides]]
+module = "{{ package_name }}.*"
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "--tb=short --cov=src/{{ package_name }} --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["src/{{ package_name }}"]
+omit = [
+    "*/tests/*",
+    "*/__main__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]

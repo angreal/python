@@ -1,6 +1,19 @@
-author_name='Your name'
-author_email='Your email address (eq. you@example.com)'
-project_name='Name of the project (will be shown e.g. as the title in the readme)'
-project_slug='{{ project_name | lower | replace(from=" ", to="-") }}'
-package_name='{{ project_slug | replace(from="-", to="_") }}'
-project_short_description='A short description of the project'
+# Default values for template variables
+author_name = "Your Name"
+author_email = "your.email@example.com"
+project_name = "My Python Project"
+project_slug = '{{ project_name | lower | replace(from=" ", to="-") }}'
+package_name = '{{ project_slug | replace(from="-", to="_") }}'
+project_short_description = "A short description of the project"
+
+# Prompts to help users understand each variable
+[prompt]
+author_name = "Your full name for the package metadata and license"
+author_email = "Your email address for package metadata (e.g., you@example.com)"
+project_name = "The human-readable name of your project (used in README, docs)"
+project_short_description = "A brief one-line description of what your project does"
+
+# Validation rules to ensure proper formatting
+[validation]
+author_email.regex_match = "^[^@]+@[^@]+\\.[^@]+$"
+project_slug.regex_match = "^[a-z0-9-]+$"

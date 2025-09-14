@@ -1,6 +1,12 @@
 import subprocess
 
 def init():
+    import os
+    import angreal
+    
+    # Get the project directory (one level up from .angreal)
+    project_dir = os.path.dirname(angreal.get_root())
+    
     subprocess.run(
         (
             "git config --global init.defaultBranch main;"
@@ -15,7 +21,7 @@ def init():
             "git commit -am '{{ project_slug }} initialized via angreal';"
         ),
         shell=True,
-        cwd="{{ project_slug }}"
+        cwd=project_dir
     )
 
     print("Initialization complete.")
