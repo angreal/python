@@ -24,13 +24,13 @@ def init():
     
     # Install dependencies
     print("Installing dependencies...")
-    venv.install(["-e", ".[dev]"])
+    venv.install(["-e", "..[dev]"])
     venv.install(["pre-commit"])
     
     # Set up pre-commit
     print("Setting up pre-commit...")
-    subprocess.run([venv.python_executable, "-m", "pre_commit", "install"], cwd=project_dir, check=True)
-    subprocess.run([venv.python_executable, "-m", "pre_commit", "run", "--all-files"], cwd=project_dir, check=True)
+    subprocess.run([venv.python_executable, "-m", "pre_commit", "install"], cwd=project_dir, check=False) 
+    subprocess.run([venv.python_executable, "-m", "pre_commit", "run", "--all-files"], cwd=project_dir, check=False)#first run actually cleans up
     
     # Commit changes
     print("Creating initial commit...")
