@@ -2,7 +2,7 @@ import subprocess
 import os
 
 def init():
-    import angreal
+    from angreal.integrations.venv import VirtualEnv
 
     # Get the project directory (one level up from .angreal)
     project_dir = os.path.dirname(angreal.get_root())
@@ -17,7 +17,7 @@ def init():
     # Create and activate virtual environment
     print("Creating virtual environment...")
     venv_path = os.path.join(project_dir, ".venv")
-    venv = angreal.VirtualEnv(venv_path)
+    venv = VirtualEnv(venv_path)
     venv.create()
     venv.activate()
     
