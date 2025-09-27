@@ -2,6 +2,7 @@ import subprocess
 import os
 
 def init():
+    import angreal
     from angreal.integrations.venv import VirtualEnv
 
     # Get the project directory (one level up from .angreal)
